@@ -148,6 +148,18 @@ if __name__ == "__main__":
         data_q = DataLoader(data_q, batch_size=data['BATCH_SIZE'], shuffle=False, num_workers=data['num_workers_teste'])
         data_g = DataLoader(data_g, batch_size=data['BATCH_SIZE'], shuffle=False, num_workers=data['num_workers_teste'])
  
+    if data['dataset'] == 'Market1501':
+        from data.triplet_sampler import CustomDataSet4Market1501
+        # We need to create name list files similar to how they do it for Veri776
+        data_train = CustomDataSet4Market1501(data['train_list_file'], data['train_dir'], is_train=True, transform=train_transform)
+        data_q = CustomDataSet4Market1501(data['query_list_file'], data['query_dir'], is_train=False, transform=teste_transform)
+        data_g = CustomDataSet4Market1501(data['gallery_list_file'], data['teste_dir'], is_train=False, transform=teste_transform)
+        data_train = DataLoader(data_train, sampler=RandomIdentitySampler(data_train, data['BATCH_SIZE'], data['NUM_INSTANCES']), 
+                              num_workers=data['num_workers_train'], batch_size=data['BATCH_SIZE'], 
+                              collate_fn=train_collate_fn, pin_memory=True)
+        data_q = DataLoader(data_q, batch_size=data['BATCH_SIZE'], shuffle=False, num_workers=data['num_workers_teste'])
+        data_g = DataLoader(data_g, batch_size=data['BATCH_SIZE'], shuffle=False, num_workers=data['num_workers_teste'])
+
     # Check if the GPU is available and select
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
     print(f'Selected device: {device}')

@@ -231,7 +231,7 @@ class CustomDataSet4Market1501(Dataset):
         if self.transform:
             img = self.transform((image.type(torch.FloatTensor))/255.0)
 
-        return img, vid, camid     
+        return img, vid, camid, 0     # Added dummy view_id of 0
 
        
  

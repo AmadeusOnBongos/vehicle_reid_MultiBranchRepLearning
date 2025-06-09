@@ -1,0 +1,90 @@
+model_arch: Baseline
+LAI: False
+n_cams: 6  # Market-1501 has 6 cameras
+n_views: 8
+backbone: ibn
+torch_seed: 0
+epoch_freeze_L1toL3: 0
+freeze_triplet_branches: 0
+freeze_backbone_warmup: False
+branch_layer: 3
+validation_period: 10
+
+###GPU Settings
+half_precision: True 
+parallel: False
+gpu: 
+
+####LOSSES
+mean_losses: False
+softmax_loss: torch_ce
+label_smoothing: 0.1
+metric_loss: fastreidtriplet
+metric_loss_trans: fastreidtriplet
+hard_mining: True
+triplet_norm: False
+triplet_margin: 0.3
+triplet_margin_trans: 0.3
+
+circle_softmax: False
+margin_circle: 0.35
+scale_circle: 64
+
+group_norm: False
+pretrain_gropnorm: False
+gn_init: kaiming
+pretrain_ongroups: True
+
+##DATA
+# Replace these paths with your Market-1501 dataset paths
+ROOT_DIR: "C:/Users/Haris_DFKI/Desktop/SnP/data/reid_data/market"
+BATCH_SIZE: 32
+NUM_INSTANCES: 4
+num_workers_train: 4
+num_workers_teste: 6
+
+y_length: 256
+x_length: 128  # Market-1501 standard size
+
+n_mean: [0.485, 0.456, 0.406]  # ImageNet normalization
+n_std: [0.229, 0.224, 0.225]
+
+p_hflip: 0.5
+p_rerase: 0.5
+
+dataset: Market1501
+n_classes: 751  # Market-1501 has 751 identities in training set
+
+query_dir: "C:/Users/Haris_DFKI/Desktop/SnP/data/reid_data/market/query"
+teste_dir: "C:/Users/Haris_DFKI/Desktop/SnP/data/reid_data/market/bounding_box_test"
+train_dir: "C:/Users/Haris_DFKI/Desktop/SnP/data/reid_data/market/bounding_box_train"
+query_list_file: "C:/Users/Haris_DFKI/Desktop/SnP/data/reid_data/market/name_query.txt"
+gallery_list_file: "C:/Users/Haris_DFKI/Desktop/SnP/data/reid_data/market/name_test.txt"
+train_list_file: "C:/Users/Haris_DFKI/Desktop/SnP/data/reid_data/market/name_train.txt"
+
+### Optimizer settings
+optimizer: Adam
+lr: 0.0001
+weight_decay: 0.0005
+bias_lr_factor: 1
+momentum: 0.9
+
+###scheduler settings
+sched_name: Warm_MultiStep
+min_lr: 7.75e-5
+num_epochs: 2
+milestones: [40, 70]
+gamma: 0.1
+warmup_factor: 0.01
+warmup_iters: 10
+warmup_method: linear
+
+alpha_ce: 0.6
+beta_tri: 1.0
+gamma_ce: 0.4
+gamma_t: 0.4
+
+pool: GAP
+pool_tripletb: GAP
+pool_trans: GAP
+linear_num: False 
