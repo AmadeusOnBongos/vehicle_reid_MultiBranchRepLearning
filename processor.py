@@ -124,10 +124,10 @@ def train_epoch(model, device, dataloader, loss_fn, triplet_loss, optimizer, dat
         optimizer.zero_grad()
 
         # Debug prints
-        print(f"\nBatch stats:")
-        print(f"Image batch shape: {image_batch.shape}")
-        print(f"Label shape: {label.shape}, unique labels: {torch.unique(label).shape}")
-        print(f"Learning rate: {get_lr(optimizer)}")
+        # print(f"\nBatch stats:")
+        # print(f"Image batch shape: {image_batch.shape}")
+        # print(f"Label shape: {label.shape}, unique labels: {torch.unique(label).shape}")
+        # print(f"Learning rate: {get_lr(optimizer)}")
 
         image_batch = image_batch.to(device)
         label = label.to(device)
@@ -136,11 +136,11 @@ def train_epoch(model, device, dataloader, loss_fn, triplet_loss, optimizer, dat
                 preds, embs, _, _ = model(image_batch, cam, view)
                 
                 # Debug model outputs
-                print(f"Predictions type: {type(preds)}")
-                if isinstance(preds, list):
-                    print(f"Number of predictions: {len(preds)}")
-                    print(f"First prediction shape: {preds[0].shape}")
-                    print(f"First prediction stats - min: {preds[0].min():.4f}, max: {preds[0].max():.4f}")
+                # print(f"Predictions type: {type(preds)}")
+                # if isinstance(preds, list):
+                #     print(f"Number of predictions: {len(preds)}")
+                #     print(f"First prediction shape: {preds[0].shape}")
+                #     print(f"First prediction stats - min: {preds[0].min():.4f}, max: {preds[0].max():.4f}")
                 
                 loss = 0
                 #### Losses 
@@ -150,20 +150,20 @@ def train_epoch(model, device, dataloader, loss_fn, triplet_loss, optimizer, dat
                 for i, item in enumerate(preds):
                     if i%2==0 or "aseline" in model_arch or "R50" in model_arch:
                         ce_loss = alpha_ce * loss_fn(item, label)
-                        print(f"CE Loss {i}: {ce_loss.item():.4f}")
+                        # print(f"CE Loss {i}: {ce_loss.item():.4f}")
                         loss_ce += ce_loss
                     else:
                         ce_loss = gamma_ce * loss_fn(item, label)
-                        print(f"CE Loss {i} (gamma): {ce_loss.item():.4f}")
+                        # print(f"CE Loss {i} (gamma): {ce_loss.item():.4f}")
                         loss_ce += ce_loss
                 for i, item in enumerate(embs):
                     if i%2==0 or "aseline" in model_arch or "R50" in model_arch:
                         tri_loss = beta_tri * triplet_loss(item, label)
-                        print(f"Triplet Loss {i}: {tri_loss.item():.4f}")
+                        # print(f"Triplet Loss {i}: {tri_loss.item():.4f}")
                         loss_t += tri_loss
                     else:
                         tri_loss = gamma_t * triplet_loss(item, label)
-                        print(f"Triplet Loss {i} (gamma): {tri_loss.item():.4f}")
+                        # print(f"Triplet Loss {i} (gamma): {tri_loss.item():.4f}")
                         loss_t += tri_loss
 
                 if data['mean_losses']:
@@ -171,7 +171,7 @@ def train_epoch(model, device, dataloader, loss_fn, triplet_loss, optimizer, dat
                 else:
                     loss = loss_ce + loss_t
                 
-                print(f"Final loss: CE={loss_ce.item():.4f}, Triplet={loss_t.item():.4f}, Total={loss.item():.4f}")
+                # print(f"Final loss: CE={loss_ce.item():.4f}, Triplet={loss_t.item():.4f}, Total={loss.item():.4f}")
         else:
             preds, embs, ffs, activations = model(image_batch, cam, view)
 
