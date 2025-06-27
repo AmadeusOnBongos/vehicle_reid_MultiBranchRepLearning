@@ -7,6 +7,7 @@ pandas
 pyyaml
 tqdm
 tensorboard
+tkinter
 
 # PyTorch to be installed manually due to CUDA version
 # See install instructions below
