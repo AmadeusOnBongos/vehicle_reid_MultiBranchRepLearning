@@ -62,12 +62,12 @@ p_rerase: 0.5
 dataset: Veri776 #Veri776
 
 n_classes: 575 #30671 #770
-query_dir: /home/haow01/VeRi/image_query/ #/mnt/DATADISK/Datasets/vehicle/VeRi/image_query/ #
-teste_dir: /home/haow01/VeRi/image_test/  #/mnt/DATADISK/Datasets/vehicle/VeRi/image_test/ #
-train_dir: /home/haow01/VeRi/image_train/ #/mnt/DATADISK/Datasets/vehicle/VeRi/image_train/ #
-query_list_file: /home/haow01/VeRi/name_query.txt
-gallery_list_file: /home/haow01/VeRi/name_test.txt
-train_list_file: /home/haow01/VeRi/name_train.txt
+query_dir: /home/haow01/datasets/VeRi/image_query/ #/mnt/DATADISK/Datasets/vehicle/VeRi/image_query/ #
+teste_dir: /home/haow01/datasets/VeRi/image_test/  #/mnt/DATADISK/Datasets/vehicle/VeRi/image_test/ #
+train_dir: /home/haow01/datasets/VeRi/image_train/ #/mnt/DATADISK/Datasets/vehicle/VeRi/image_train/ #
+query_list_file: /home/haow01/datasets/VeRi/name_query.txt
+gallery_list_file: /home/haow01/datasets/VeRi/name_test.txt
+train_list_file: /home/haow01/datasets/VeRi/name_train.txt
 
 test_keypoint: /home/haow01/vehicle_reid_MultiBranchRepLearning/dataset/VeRi/keypoint_orient_test.txt
 train_keypoint: /home/haow01/vehicle_reid_MultiBranchRepLearning/dataset/VeRi/keypoint_orient_train.txt
