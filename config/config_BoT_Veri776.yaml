@@ -69,8 +69,8 @@ query_list_file: /home/haow01/VeRi/name_query.txt
 gallery_list_file: /home/haow01/VeRi/name_test.txt
 train_list_file: /home/haow01/VeRi/name_train.txt
 
-test_keypoint: /home/haow01/VeRi/keypoint_orient_test.txt
-train_keypoint: /home/haow01/VeRi/keypoint_orient_train.txt
+test_keypoint: /home/haow01/VeRi/dataset/keypoint_orient_test.txt
+train_keypoint: /home/haow01/VeRi/dataset/keypoint_orient_train.txt
 
 ### Define an optimizer settings
 optimizer: Adam #Adam SGD
