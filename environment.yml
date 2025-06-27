@@ -10,6 +10,7 @@ dependencies:
   - pyyaml
   - tqdm
   - pip
+  - tensorboard
   - pip:
       # PyTorch to be installed manually due to CUDA version handling
       # See installation note below
