@@ -1,4 +1,4 @@
-model_arch: MBR_4B
+model_arch: MBR_4G
 LAI: False
 n_cams: 20
 n_views: 8
