@@ -4,6 +4,7 @@ from torchvision import transforms
 from processor import get_model
 import yaml
 import argparse
+import torchvision
 
 # Argument parsing
 parser = argparse.ArgumentParser(description='Check similarity between two images using a trained re-ID model')
@@ -31,7 +32,8 @@ preprocess = transforms.Compose([
 
 # 3. Load and preprocess images
 def load_image(path):
-    img = Image.open(path).convert('RGB')
+    img = torchvision.io.read_image(path)  # returns tensor [C, H, W], uint8
+    img = img.type(torch.FloatTensor) / 255.0
     img = preprocess(img)
     return img.unsqueeze(0)  # add batch dimension
 
