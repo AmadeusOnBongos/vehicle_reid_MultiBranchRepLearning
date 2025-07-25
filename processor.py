@@ -1,10 +1,10 @@
 from turtle import update
 import torch
 import torch.nn.functional as F
-from models.models import MBR_model
+from .models.models import MBR_model
 from tqdm import tqdm
 import numpy as np
-from metrics.eval_reid import eval_func
+from .metrics.eval_reid import eval_func
 
 def get_lr(optimizer):
     for param_group in optimizer.param_groups:
